@@ -117,8 +117,13 @@
               "devServerTarget": "infinity-live:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "infinity-live"
 }
