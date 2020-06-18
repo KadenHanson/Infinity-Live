@@ -1,0 +1,48 @@
+.container {
+    padding: 50px;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgb(0, 0, 0, 0.5);
+}
+
+.battleship-tile {
+    color: black;
+}
+
+.win {
+    background-color: #23d160;
+    color: #fff;
+}
+
+.fail {
+    background-color: #ff3860;
+    color: #fff;
+}
+
+.content table td, .content table th {
+    border: 1px solid #dbdbdb;
+    padding: 0.5em 0.75em;
+    vertical-align: middle;
+    height: 50px;
+    text-align: center;
+}
+
+.content table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content table tr:hover {
+    background-color: transparent;
+}
+
+.battleship-tile:hover {
+    cursor: pointer;
+}
+
+.noPad {
+    padding: 0px;
+}
+
+.spectator-background {
+    background-image: linear-gradient(135deg, #f78a72, #fdb663);
+}

@@ -1,0 +1,179 @@
+.semi-final-body {
+    margin-top: 50px;
+}
+
+.contestant-box {
+    display: flex;
+}
+
+.contestant {
+    width: 50%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.contestant-profile {
+    max-width: 125px;
+    border: 3px solid #FCB364;
+    border-radius: 5px;
+}
+
+.contestant-name {
+    position: relative;
+    bottom: 35px;
+    color: black;
+    line-height: normal;
+    font-family: snes;
+    font-size: 32px;
+    margin-left: 15px;
+}
+
+@keyframes cycle {
+    0% {
+        border-color: #F78B72
+    }
+    25% {
+        border-color: #e78248
+    }
+    50% {
+        border-color: #e4623a
+    }
+    75% {
+        border-color: #e78248
+    }
+    100% {
+        border-color: #F78B72
+    }
+}
+
+iframe {
+    overflow: hidden;
+    border: 5px solid;
+    border-radius: 5px;
+    animation: cycle 2.5s infinite;
+    z-index: 2;
+    position: relative;
+}
+
+.do-the-dew {
+    width: 150px;
+    position: absolute;
+    top: 95px;
+}
+
+.do-the-dew:nth-child(1) {
+    /* nice */
+    left: -69px;
+    transform: rotate(-45deg);
+    z-index: 1;
+}
+
+.do-the-dew:nth-child(2) {
+    /* nice */
+    right: -69px;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+.next-btn-container {
+    text-align: center;
+    position: relative;
+}
+
+.next-btn {
+    width: 150px;
+}
+
+.next-btn-text {
+    position: absolute;
+    top: 50%;
+    left: 49.5%;
+    transform: translate(-50%, -50%);
+    font-family: snes;
+    color: black;
+    font-size: 35px;
+}
+
+.next-btn:hover + .next-btn-text, .next-btn-text:hover {
+    color: white;
+}
+
+.start-game-container {
+    text-align: center;
+    font-family: snes;
+}
+
+@-webkit-keyframes breathe {
+    0% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+    25% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    60% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+    100% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+}
+
+@keyframes breathe {
+    0% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+    25% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    60% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+    100% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+}
+
+.start-game-container h1 {
+    font-size: 60pt;
+    color: white;
+    animation: breathe 3s infinite;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+.start-game-container button {
+    font-family: snes;
+    font-size: 40pt;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 100px;
+    border: none;
+    background: linear-gradient(135deg, #f78a72, #fdb663);
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+@keyframes wiggle {
+    0%      { transform: rotate(0deg) }
+    25%     { transform: rotate(45deg) }
+    50%     { transform: rotate(-45deg) }
+    100%    { transform: rotate(0deg) }
+}
+
+.start-game-container button:hover {
+    animation: wiggle 5s infinite;
+}

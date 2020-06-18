@@ -1,0 +1,31 @@
+<div class="semi-final-body">
+    <div class="container">
+        <div class="start-game-container" *ngIf="!gameStart">
+            <h1>Are ya ready kids??</h1>
+            <p>
+                <button (click)="startGame()">START GAMES</button>
+            </p>
+        </div>
+        <!-- <loading-overlay></loading-overlay> -->
+        <div class="contestant-box" *ngIf="gameStart">
+            <div class="contestant" *ngFor="let con of currentContestants">
+                <img class="contestant-profile" src='{{con.pictureUrl}}' />
+                <div class="contestant-name">
+                    {{con.firstname}}<br>
+                    {{con.lastname}}
+                </div>
+            </div>
+        </div>
+        <div class="game-container" *ngIf="gameStart">
+            <img class="do-the-dew" src="../../../assets/images/mtn-dew.png" />
+            <img class="do-the-dew" src="../../../assets/images/mtn-dew.png" />
+            <iframe class="game" width="100%" height="600" [src]="currentGameUrl | safe" scrolling="no"></iframe>
+        </div>
+        <div class="next-btn-container container" *ngIf="gameStart">
+            <a (click)="setCurrentGame()">
+                <img class="next-btn" src="../../../assets/images/dorito.png" />
+                <span class="next-btn-text">Next Game</span>
+            </a>
+        </div>
+    </div>
+</div>
