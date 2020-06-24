@@ -27,15 +27,17 @@ import { BattleshipComponent } from './semi-finals/battleship/battleship.compone
     SafePipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'universal' }),
     AppRoutingModule,
     RouterModule.forRoot([
-        { path: '', component: AppComponent },
-        { path: 'semi-finals', component: SemiFinalMenuComponent },
-        { path: 'finals', component: FinalsComponent },
-        { path: 'semi-finals/battleship', component: BattleshipComponent },
-        { path: 'semi-finals/snake', component: SnakeAppComponent }
-    ]),
+    { path: '', component: AppComponent },
+    { path: 'semi-finals', component: SemiFinalMenuComponent },
+    { path: 'finals', component: FinalsComponent },
+    { path: 'semi-finals/battleship', component: BattleshipComponent },
+    { path: 'semi-finals/snake', component: SnakeAppComponent }
+], {
+    initialNavigation: 'enabled'
+}),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()
   ],
