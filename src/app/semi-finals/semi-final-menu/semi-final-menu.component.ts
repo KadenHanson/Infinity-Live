@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -28,8 +29,8 @@ export class SemiFinalMenuComponent implements OnInit {
     currentGameUrl: string;
     gameStart: boolean = false;
 
-    constructor() {
-        
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+
         this.contestantList = [
             [
                 { firstname: 'TheDarkLordVesuvius', lastname: 'Hanson', pictureUrl: '../../../assets/player-profiles/kaden_profile.png', gameUrl: 'kaden-vs-amy' },
@@ -59,7 +60,9 @@ export class SemiFinalMenuComponent implements OnInit {
     }
 
     startGame() {
-        document.body.style.height = "auto";
+        if (isPlatformBrowser(this.platformId)) {
+            document.body.style.height = "auto";
+        }
         this.setCurrentGame();
         this.gameStart = true;
     }
@@ -68,7 +71,9 @@ export class SemiFinalMenuComponent implements OnInit {
         if (this.currentContestantsIndex < 4) {
             this.currentContestantsIndex++;
             this.currentContestants = this.contestantList[this.currentContestantsIndex];
-            this.currentGameUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + "/semi-finals/battleship?id=presence-" + this.currentContestants[0].gameUrl + '&spectator=true';
+            if (isPlatformBrowser(this.platformId)) {
+                this.currentGameUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + "/semi-finals/battleship?id=presence-" + this.currentContestants[0].gameUrl + '&spectator=true';
+            }
         }
     }
 }

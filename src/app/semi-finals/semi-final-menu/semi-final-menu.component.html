@@ -19,7 +19,7 @@
         <div class="game-container" *ngIf="gameStart">
             <img class="do-the-dew" src="../../../assets/images/mtn-dew.png" />
             <img class="do-the-dew" src="../../../assets/images/mtn-dew.png" />
-            <iframe class="game" width="100%" height="600" [src]="currentGameUrl | safe" scrolling="no"></iframe>
+            <!-- <iframe class="game" width="100%" height="600" [src]="currentGameUrl | safe" scrolling="no"></iframe> -->
         </div>
         <div class="next-btn-container container" *ngIf="gameStart">
             <a (click)="setCurrentGame()">

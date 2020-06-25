@@ -1,4 +1,5 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { BoardService } from './board.service';
 import { Board } from './board';
@@ -23,13 +24,14 @@ export class BattleshipComponent {
     player: number = 0;
     players: number = 0;
     gameId: string;
-    gameUrl: string = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port: '') + this.router.url;
+    gameUrl: string = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + this.router.url;
 
     constructor(
         public _vcr: ViewContainerRef,
         private boardService: BoardService,
         public router: Router,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        @Inject(PLATFORM_ID) private platformId: Object
     ) {
         this.initPusher();
         this.createBoards();
@@ -41,7 +43,9 @@ export class BattleshipComponent {
         let id = this.getQueryParam('id');
         if (!id) {
             id = this.getUniqueId();
-            location.search = location.search ? '&id=' + id : 'id=' + id;
+            if (isPlatformBrowser(this.platformId)) {
+                location.search = location.search ? '&id=' + id : 'id=' + id;
+            }
         }
         this.gameId = id;
         // init pusher
@@ -51,7 +55,7 @@ export class BattleshipComponent {
             cluster: 'us3',
             encrypted: false
         });
-        
+
         // bind to relevant channels
         this.pusherChannel = pusher.subscribe(id);
         this.pusherChannel.bind('pusher:member_added', member => { this.players++; this.showBoard = true })
@@ -145,8 +149,10 @@ export class BattleshipComponent {
     }
 
     getQueryParam(name) {
-        var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        if (isPlatformBrowser(this.platformId)) {
+            var match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
     }
 
     getUniqueId() {
