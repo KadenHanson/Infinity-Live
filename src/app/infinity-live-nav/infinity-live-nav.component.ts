@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
     selector: 'infinity-live-nav',
     templateUrl: './infinity-live-nav.component.html',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class InfinityLiveNavComponent implements OnInit {
     spectatorHide: boolean = false;
 
-    constructor() { }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
     ngOnInit() {
-        this.spectatorHide = location.href.indexOf('&spectator=true') > -1;
+        if (isPlatformBrowser(this.platformId)) {
+            this.spectatorHide = location.href.indexOf('&spectator=true') > -1;
+        }
     }
 
 }

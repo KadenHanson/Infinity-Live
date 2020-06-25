@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/infinity-live",
+            "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,8 +24,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/bulma/css/bulma.css",
-              "./node_modules/ngx-toastr/toastr.css"
+              "./node_modules/bulma/css/bulma.css"
             ],
             "scripts": [
               "./node_modules/pusher-js/dist/web/pusher.min.js"
@@ -121,6 +120,53 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {}
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "infinity-live:build",
+            "serverTarget": "infinity-live:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "infinity-live:build:production",
+              "serverTarget": "infinity-live:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "infinity-live:build:production",
+            "serverTarget": "infinity-live:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
         }
       }
     }
