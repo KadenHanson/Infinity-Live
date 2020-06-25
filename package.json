@@ -10,7 +10,7 @@
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
     "dev:ssr": "ng run infinity-live:serve-ssr",
-    "serve:ssr": "node dist/server/main.js",
+    "serve:ssr": "node docs/server/main.js",
     "build:ssr": "ng build --prod && ng run infinity-live:server:production",
     "prerender": "ng run infinity-live:prerender"
   },
